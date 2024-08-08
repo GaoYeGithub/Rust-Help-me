@@ -1,0 +1,12 @@
+[package]
+name = "natura"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+coffee = { version = "0.4", features = ["opengl"] }
+
+[[bin]]
+name = "natura"
+path = "src/main.rs"
+

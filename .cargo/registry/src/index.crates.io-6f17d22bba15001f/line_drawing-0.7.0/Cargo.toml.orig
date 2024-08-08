@@ -1,0 +1,20 @@
+[package]
+name = "line_drawing"
+version = "0.7.0"
+authors = ["Expenses <expenses@airmail.cc>"]
+description = "A collection of line-drawing algorithms for use in graphics and video games."
+repository = "https://github.com/expenses/line_drawing"
+documentation = "https://docs.rs/line_drawing"
+license = "MIT"
+categories = ["algorithms", "games"]
+keywords = ["line", "drawing", "bresenham", "sight", "game"]
+readme = "README.md"
+
+
+[dependencies]
+num-traits = "0"
+
+[dev-dependencies]
+bresenham = "0"
+image = "0"
+rand = "0"

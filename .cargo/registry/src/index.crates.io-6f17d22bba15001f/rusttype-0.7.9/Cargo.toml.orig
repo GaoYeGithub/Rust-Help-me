@@ -1,0 +1,54 @@
+[package]
+name = "rusttype"
+version = "0.7.9"
+authors = [
+    "Dylan Ede <dylanede@googlemail.com>",
+    "Jeremy Soller <jackpot51@gmail.com>",
+    "Alex Butler <alexheretic@gmail.com>",
+]
+edition = "2018"
+description = """
+A pure Rust alternative to libraries like FreeType.
+
+RustType provides an API for loading, querying and rasterising TrueType fonts.
+
+It also provides an implementation of a dynamic GPU glyph cache for hardware font rendering.
+"""
+documentation = "https://docs.rs/rusttype"
+homepage = "https://gitlab.redox-os.org/redox-os/rusttype"
+repository = "https://gitlab.redox-os.org/redox-os/rusttype"
+readme = "README.md"
+license = "MIT / Apache-2.0"
+keywords = ["font", "truetype", "opentype", "ttf", "otf"]
+exclude = ["/fonts/**"]
+
+[package.metadata.docs.rs]
+features = ["gpu_cache"]
+
+[dependencies]
+# 0.8 is compatible when using default-features
+rusttype_next = { version = "0.8", package = "rusttype" }
+
+[dev-dependencies]
+arrayvec = { version = "0.4", default-features = false }
+glium = "0.25"
+image = { version = "0.21", default-features = false, features = ["png_codec"] }
+lazy_static = "1"
+unicode-normalization = "0.1"
+blake2 = "0.8"
+
+[features]
+# Compiles benchmark code, to be avoided normally as this currently requires nightly rust
+bench = ["gpu_cache"]
+# Adds `gpu_cache` module
+gpu_cache = ["rusttype_next/gpu_cache"]
+
+[[example]]
+name = "gpu_cache"
+required-features = ["gpu_cache"]
+
+[[example]]
+name = "image"
+
+[[example]]
+name = "simple"

@@ -1,0 +1,32 @@
+[package]
+name = "gilrs"
+version = "0.7.4"
+authors = ["Arvamer <arvamer@gmail.com>"]
+license = "Apache-2.0/MIT"
+exclude = ["controller.svg"]
+description = "Game Input Library for Rust"
+documentation = "https://docs.rs/gilrs/"
+repository = "https://gitlab.com/gilrs-project/gilrs"
+readme = "../README.md"
+keywords = ["gamepad", "joystick", "input"]
+categories = ["game-engines"]
+
+[badges]
+gitlab = { repository = "gilrs-project/gilrs" }
+
+[dependencies]
+vec_map = "0.8"
+uuid = "0.8.0"
+log = "0.4.1"
+fnv = "1.0"
+serde = { version = "1.0", features = ["derive"], optional = true }
+gilrs-core = { path = "../gilrs-core", version = "0.2" }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+stdweb = "0.4.13"
+
+[dev-dependencies]
+env_logger = "0.7.1"
+
+[package.metadata.docs.rs]
+features = ["serde"]

@@ -1,0 +1,17 @@
+/target
+**/*.rs.bk
+Cargo.lock
+.DS_Store
+.fuse_hidden*
+.idea
+/*.dot
+/*.metal
+/*.metallib
+/*.ron
+/*.spv
+/*.vert
+/*.frag
+/*.comp
+/*.wgsl
+/*.hlsl
+/*.txt

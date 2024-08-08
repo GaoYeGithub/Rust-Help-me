@@ -1,0 +1,69 @@
+image: "rust:latest"
+
+stages:
+- build
+- test
+
+before_script:
+- rustup toolchain add $toolchain
+
+variables:
+  CARGO_INCREMENTAL: 0
+  RUST_BACKTRACE: 1
+
+build:stable:
+  stage: build
+  variables:
+    toolchain: stable
+  script:
+  - cargo +stable build -v
+
+test:stable:
+  stage: test
+  variables:
+    toolchain: stable
+  dependencies:
+  - build:stable
+  script:
+  - cargo +stable test -v
+
+build:nightly:
+  stage: build
+  variables:
+    toolchain: nightly
+  script:
+  - cargo +nightly build -v
+
+test:nightly:
+  stage: test
+  variables:
+    toolchain: nightly
+  dependencies:
+  - build:nightly
+  script:
+  - cargo +nightly test -v
+
+test:benches:
+  stage: test
+  variables:
+    toolchain: nightly
+  dependencies:
+  - build:nightly
+  script:
+  - cargo +nightly test --bench api
+
+build:redox:
+  stage: build
+  variables:
+    toolchain: nightly
+  script:
+  - rustup target add x86_64-unknown-redox --toolchain nightly
+  - cargo +nightly build --target=x86_64-unknown-redox -v
+
+build:no_std:
+  stage: build
+  variables:
+    toolchain: stable
+  script:
+  - rustup target add thumbv6m-none-eabi --toolchain stable
+  - cargo +stable build --target thumbv6m-none-eabi --no-default-features --features libm -v

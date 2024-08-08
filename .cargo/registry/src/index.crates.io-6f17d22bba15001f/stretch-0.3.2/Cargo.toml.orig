@@ -1,0 +1,43 @@
+[package]
+name = "stretch"
+version = "0.3.2"
+authors = ["Emil Sjölander <emil@visly.app>"]
+edition = "2018"
+include = ["src/**/*", "Cargo.toml"]
+description = "High performance & cross-platform Flexbox implementation"
+repository = "https://github.com/vislyhq/stretch"
+readme = "README.md"
+keywords = ["ios", "android", "cross-platform", "layout", "flexbox"]
+categories = ["gui"]
+license-file = "LICENSE"
+
+[badges]
+circle-ci = { repository = "vislyhq/stretch", branch = "master" }
+maintenance = { status = "experimental" }
+
+[dependencies]
+libm = "0.1.2"
+lazy_static = "1.3"
+
+[features]
+default = ["std"]
+std = []
+
+[dev-dependencies]
+criterion = "0.2"
+
+[profile.release]
+lto = true
+panic = 'abort'
+
+[[bench]]
+name = "generated"
+path = "benches/generated/mod.rs"
+harness = false
+
+[[bench]]
+name = "complex"
+harness = false
+
+[workspace]
+members = [ "scripts/gentest" ]
